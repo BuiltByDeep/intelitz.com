@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelitz - Innovative Software Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#4338CA', // A richer indigo
+                        'primary-hover': '#3730A3',
+                        'secondary': '#10B981', // A vibrant green for accents
+                        'dark-blue': '#111827',
+                        'light-gray': '#F3F4F6',
+                        'medium-gray': '#6B7280',
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .hero-bg {
+            background: linear-gradient(45deg, rgba(17, 24, 39, 0.98), rgba(67, 56, 202, 0.95)), url('Header.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .section-bg-pattern {
+            background-color: #ffffff;
+            background-image: radial-gradient(#dbeafe 2px, transparent 2px);
+            background-size: 30px 30px;
+        }
+        .swiper-button-next, .swiper-button-prev {
+            color: #4338CA;
+        }
+        .faq-question { cursor: pointer; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .faq-question.active + .faq-answer { max-height: 200px; }
+        .faq-question .arrow { transition: transform 0.3s ease; }
+        .faq-question.active .arrow { transform: rotate(180deg); }
+        .tech-logo {
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+        .tech-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        
+        /* Animation Styles */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .process-step .step-card {
+            opacity: 0;
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .process-step.is-visible .step-card {
+            opacity: 1;
+        }
+        .process-step.left .step-card { transform: translateX(-30px); }
+        .process-step.right .step-card { transform: translateX(30px); }
+        .process-step.is-visible .step-card { transform: translateX(0); }
+        
+        .process-step .step-icon {
+            opacity: 0;
+            transform: scale(0.5);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+            transition-delay: 0.2s;
+        }
+        .process-step.is-visible .step-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+    </style>
+</head>
+<body class="bg-light-gray text-dark-blue">
+
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#">
+                <img src="https://placehold.co/140x40/4338CA/FFFFFF?text=Intelitz&font=inter" alt="Intelitz Logo" class="h-8 w-auto">
+            </a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#about" class="text-medium-gray hover:text-primary transition duration-300 font-medium">About</a>
+                <a href="#services" class="text-medium-gray hover:text-primary transition duration-300 font-medium">Services</a>
+                <a href="#process" class="text-medium-gray hover:text-primary transition duration-300 font-medium">Process</a>
+                <a href="#testimonials" class="text-medium-gray hover:text-primary transition duration-300 font-medium">Testimonials</a>
+                <a href="#contact" class="bg-primary text-white px-5 py-2 rounded-full font-medium hover:bg-primary-hover transition-all duration-300 shadow-sm">Contact Us</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-dark-blue focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white">
+            <a href="#about" class="block py-3 px-6 text-sm text-medium-gray hover:bg-light-gray hover:text-primary">About</a>
+            <a href="#services" class="block py-3 px-6 text-sm text-medium-gray hover:bg-light-gray hover:text-primary">Services</a>
+            <a href="#process" class="block py-3 px-6 text-sm text-medium-gray hover:bg-light-gray hover:text-primary">Process</a>
+            <a href="#testimonials" class="block py-3 px-6 text-sm text-medium-gray hover:bg-light-gray hover:text-primary">Testimonials</a>
+            <a href="#contact" class="block py-3 px-6 text-sm text-medium-gray hover:bg-light-gray hover:text-primary">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-bg text-white">
+            <div class="container mx-auto px-6 text-center py-24 md:py-40">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">Build The Future, Today.</h1>
+                <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-3xl mx-auto">We engineer exceptional software solutions that power growth, innovation, and success for forward-thinking businesses.</p>
+                <a href="#contact" class="bg-white text-primary font-bold py-4 px-10 rounded-full transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg">Start Your Project</a>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="md:flex md:items-center md:space-x-16 reveal">
+                    <div class="md:w-1/2 mb-10 md:mb-0">
+                        <img src="Aboutsus.jpg" alt="The Intelitz team collaborating in the office" class="rounded-xl shadow-2xl w-full">
+                    </div>
+                    <div class="md:w-1/2">
+                        <span class="text-primary font-semibold uppercase tracking-wider">Who We Are</span>
+                        <h2 class="text-3xl md:text-4xl font-bold text-dark-blue mt-2 mb-6">Your Partner in Digital Transformation</h2>
+                        <p class="text-medium-gray mb-4 leading-relaxed">Intelitz is more than just a software company — we are architects of digital solutions. Our team of elite developers, designers, and strategists are driven by a passion for technology and a commitment to turning your ambitious ideas into market-leading products.</p>
+                        <h3 class="text-2xl font-bold text-dark-blue mt-8 mb-3">Our Mission</h3>
+                        <p class="text-medium-gray leading-relaxed">To empower businesses with transformative technology, fostering growth and efficiency through bespoke software that is as intelligent as it is intuitive.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="section-bg-pattern py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 reveal">
+                    <span class="text-primary font-semibold uppercase tracking-wider">What We Do</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-dark-blue mt-2">Services to Fuel Your Growth</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 reveal"><div class="bg-indigo-100 text-primary rounded-lg w-14 h-14 flex items-center justify-center mb-6"><svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg></div><h3 class="text-xl font-bold mb-3">Web Development</h3><p class="text-medium-gray">High-performance, scalable web applications and marketing sites built with cutting-edge technology.</p></div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 reveal" style="transition-delay: 100ms;"><div class="bg-indigo-100 text-primary rounded-lg w-14 h-14 flex items-center justify-center mb-6"><svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg></div><h3 class="text-xl font-bold mb-3">App Development</h3><p class="text-medium-gray">Engaging and intuitive mobile apps for iOS and Android that deliver a seamless user experience.</p></div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 reveal" style="transition-delay: 200ms;"><div class="bg-indigo-100 text-primary rounded-lg w-14 h-14 flex items-center justify-center mb-6"><svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" /></svg></div><h3 class="text-xl font-bold mb-3">UI/UX Design</h3><p class="text-medium-gray">User-centric design that balances aesthetic appeal with flawless functionality to delight your users.</p></div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 reveal" style="transition-delay: 300ms;"><div class="bg-indigo-100 text-primary rounded-lg w-14 h-14 flex items-center justify-center mb-6"><svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg></div><h3 class="text-xl font-bold mb-3">Cloud & DevOps</h3><p class="text-medium-gray">Expert strategy and implementation for scalable, secure, and efficient cloud infrastructure.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Process Section -->
+        <section id="process" class="py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-20 reveal">
+                    <span class="text-primary font-semibold uppercase tracking-wider">How We Work</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-dark-blue mt-2">Our Blueprint for Success</h2>
+                </div>
+                <div class="relative max-w-4xl mx-auto">
+                    <!-- The vertical line -->
+                    <div class="hidden md:block absolute left-1/2 -translate-x-1/2 top-10 h-[calc(100%-4rem)] w-0.5 bg-indigo-200"></div>
+                    
+                    <!-- Step 1 -->
+                    <div class="process-step left md:flex items-center justify-start md:space-x-8 mb-16 relative">
+                        <div class="md:w-1/2">
+                            <div class="step-card bg-white p-8 rounded-xl shadow-xl border border-gray-100">
+                                <span class="text-sm font-semibold text-primary">STEP 01</span>
+                                <h3 class="text-2xl font-bold mt-2 mb-3">Discovery & Strategy</h3>
+                                <p class="text-medium-gray">We begin with immersive workshops to understand your vision, audience, and goals. This phase is all about aligning on a strategic roadmap for success.</p>
+                            </div>
+                        </div>
+                        <div class="step-icon flex-shrink-0 w-20 h-20 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold z-10 mx-auto my-6 md:my-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                        </div>
+                        <div class="md:w-1/2"></div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="process-step right md:flex flex-row-reverse items-center justify-start md:space-x-8 md:space-x-reverse mb-16 relative">
+                        <div class="md:w-1/2">
+                            <div class="step-card bg-white p-8 rounded-xl shadow-xl border border-gray-100">
+                                <span class="text-sm font-semibold text-primary">STEP 02</span>
+                                <h3 class="text-2xl font-bold mt-2 mb-3">UI/UX Design & Prototyping</h3>
+                                <p class="text-medium-gray">Our design team crafts intuitive, beautiful interfaces. We create interactive prototypes to give you a feel for the final product before any code is written.</p>
+                            </div>
+                        </div>
+                        <div class="step-icon flex-shrink-0 w-20 h-20 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold z-10 mx-auto my-6 md:my-0">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
+                        </div>
+                        <div class="md:w-1/2"></div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="process-step left md:flex items-center justify-start md:space-x-8 mb-16 relative">
+                        <div class="md:w-1/2">
+                           <div class="step-card bg-white p-8 rounded-xl shadow-xl border border-gray-100">
+                                <span class="text-sm font-semibold text-primary">STEP 03</span>
+                                <h3 class="text-2xl font-bold mt-2 mb-3">Agile Development</h3>
+                                <p class="text-medium-gray">Working in iterative sprints, our developers write clean, scalable code. We provide regular updates and demos to ensure the project stays on track and aligned with your vision.</p>
+                            </div>
+                        </div>
+                        <div class="step-icon flex-shrink-0 w-20 h-20 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold z-10 mx-auto my-6 md:my-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+                        </div>
+                        <div class="md:w-1/2"></div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="process-step right md:flex flex-row-reverse items-center justify-start md:space-x-8 md:space-x-reverse relative">
+                        <div class="md:w-1/2">
+                            <div class="step-card bg-white p-8 rounded-xl shadow-xl border border-gray-100">
+                                <span class="text-sm font-semibold text-primary">STEP 04</span>
+                                <h3 class="text-2xl font-bold mt-2 mb-3">Testing, Launch & Support</h3>
+                                <p class="text-medium-gray">Rigorous testing ensures a bug-free launch. After deployment, we provide ongoing support and maintenance to ensure your product continues to thrive and scale.</p>
+                            </div>
+                        </div>
+                        <div class="step-icon flex-shrink-0 w-20 h-20 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold z-10 mx-auto my-6 md:my-0">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        </div>
+                        <div class="md:w-1/2"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technologies Section -->
+        <section class="bg-light-gray py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 reveal"><h2 class="text-3xl font-bold text-dark-blue">Our Tech Stack</h2><p class="text-medium-gray mt-2">We use modern, reliable technologies to build future-proof products.</p></div>
+                <div class="flex flex-wrap justify-center items-center gap-x-10 gap-y-8 md:gap-x-16">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React Logo" class="h-12 tech-logo" title="React">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Node.js Logo" class="h-10 tech-logo" title="Node.js">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python Logo" class="h-12 tech-logo" title="Python">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Swift_logo.svg" alt="Swift Logo" class="h-10 tech-logo" title="Swift">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Kotlin_Icon.png" alt="Kotlin Logo" class="h-12 tech-logo" title="Kotlin">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS Logo" class="h-12 tech-logo" title="AWS">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" alt="Figma Logo" class="h-12 tech-logo" title="Figma">
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 reveal"><h2 class="text-3xl font-bold text-dark-blue">Trusted by Industry Leaders</h2></div>
+                <div class="swiper-container testimonial-slider relative max-w-3xl mx-auto">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide text-center p-4"><img class="w-20 h-20 rounded-full mx-auto mb-5 bg-indigo-100" src="https://placehold.co/100x100/e0e7ff/4338ca?text=TC" alt="TechCorp Logo"><p class="text-lg text-medium-gray italic mb-6">"Intelitz transformed our vision into a reality. Their team is professional, skilled, and a pleasure to work with. Highly recommended!"</p><h4 class="font-bold text-dark-blue">Jane Doe</h4><p class="text-sm text-medium-gray">CEO, TechCorp</p></div>
+                        <div class="swiper-slide text-center p-4"><img class="w-20 h-20 rounded-full mx-auto mb-5 bg-indigo-100" src="https://placehold.co/100x100/e0e7ff/4338ca?text=IN" alt="Innovate LLC Logo"><p class="text-lg text-medium-gray italic mb-6">"The mobile app they developed exceeded our expectations. It's intuitive, fast, and has received amazing feedback from our users."</p><h4 class="font-bold text-dark-blue">John Smith</h4><p class="text-sm text-medium-gray">Founder, Innovate LLC</p></div>
+                        <div class="swiper-slide text-center p-4"><img class="w-20 h-20 rounded-full mx-auto mb-5 bg-indigo-100" src="https://placehold.co/100x100/e0e7ff/4338ca?text=SI" alt="Solutions Inc. Logo"><p class="text-lg text-medium-gray italic mb-6">"Their UI/UX design process was fantastic. They truly understood our brand and created a beautiful and functional product."</p><h4 class="font-bold text-dark-blue">Emily White</h4><p class="text-sm text-medium-gray">Marketing Director, Solutions Inc.</p></div>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="bg-light-gray py-24">
+            <div class="container mx-auto px-6 max-w-3xl">
+                <div class="text-center mb-16 reveal"><h2 class="text-3xl font-bold text-dark-blue">Frequently Asked Questions</h2></div>
+                <div class="space-y-4">
+                    <div><div class="faq-question bg-white p-6 rounded-lg shadow-sm flex justify-between items-center"><h4 class="font-semibold text-lg">What is the typical project timeline?</h4><span class="arrow text-primary">&darr;</span></div><div class="faq-answer px-6 pt-0 pb-4 bg-white rounded-b-lg"><p class="text-medium-gray pt-4 border-t border-gray-200">Timelines vary, but a typical project takes 3-6 months. We provide a detailed schedule after the initial discovery phase.</p></div></div>
+                    <div><div class="faq-question bg-white p-6 rounded-lg shadow-sm flex justify-between items-center"><h4 class="font-semibold text-lg">How do you handle project communication?</h4><span class="arrow text-primary">&darr;</span></div><div class="faq-answer px-6 pt-0 pb-4 bg-white rounded-b-lg"><p class="text-medium-gray pt-4 border-t border-gray-200">We use a dedicated Slack channel, regular video calls, and a project management tool to ensure you're always up-to-date.</p></div></div>
+                    <div><div class="faq-question bg-white p-6 rounded-lg shadow-sm flex justify-between items-center"><h4 class="font-semibold text-lg">Do you offer post-launch support?</h4><span class="arrow text-primary">&darr;</span></div><div class="faq-answer px-6 pt-0 pb-4 bg-white rounded-b-lg"><p class="text-medium-gray pt-4 border-t border-gray-200">Yes, we offer flexible support and maintenance packages to keep your product secure, updated, and performing optimally.</p></div></div>
+                    <div><div class="faq-question bg-white p-6 rounded-lg shadow-sm flex justify-between items-center"><h4 class="font-semibold text-lg">How do you choose the right technology for my project?</h4><span class="arrow text-primary">&darr;</span></div><div class="faq-answer px-6 pt-0 pb-4 bg-white rounded-b-lg"><p class="text-medium-gray pt-4 border-t border-gray-200">Our choice of technology is driven by your project's specific needs, including scalability, performance requirements, and budget. We conduct a thorough analysis to select the most suitable and future-proof stack for your product.</p></div></div>
+                    <div><div class="faq-question bg-white p-6 rounded-lg shadow-sm flex justify-between items-center"><h4 class="font-semibold text-lg">Who owns the intellectual property (IP) of the software?</h4><span class="arrow text-primary">&darr;</span></div><div class="faq-answer px-6 pt-0 pb-4 bg-white rounded-b-lg"><p class="text-medium-gray pt-4 border-t border-gray-200">You do. Upon final payment, the intellectual property rights for the source code and design of the software we develop for you are fully transferred to your company.</p></div></div>
+                    <div><div class="faq-question bg-white p-6 rounded-lg shadow-sm flex justify-between items-center"><h4 class="font-semibold text-lg">How is the project cost determined?</h4><span class="arrow text-primary">&darr;</span></div><div class="faq-answer px-6 pt-0 pb-4 bg-white rounded-b-lg"><p class="text-medium-gray pt-4 border-t border-gray-200">Project costs are based on the scope, complexity, and timeline. We offer two main models: a fixed-price model for well-defined projects and a time-and-materials model for more flexible, evolving requirements. We provide a detailed estimate after our initial discovery phase.</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 reveal"><h2 class="text-3xl md:text-4xl font-bold text-dark-blue">Have a Project in Mind?</h2><p class="text-medium-gray mt-3 max-w-2xl mx-auto">Let's build something amazing together. Fill out the form and we'll be in touch to schedule your free consultation.</p></div>
+                <div class="max-w-xl mx-auto bg-light-gray p-8 rounded-xl shadow-md">
+                    <form id="contact-form" class="space-y-6">
+                        <div><label for="name" class="block text-sm font-medium text-medium-gray">Full Name</label><input type="text" id="name" name="name" required class="mt-1 block w-full px-4 py-3 bg-white border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"></div>
+                        <div><label for="email" class="block text-sm font-medium text-medium-gray">Email Address</label><input type="email" id="email" name="email" required class="mt-1 block w-full px-4 py-3 bg-white border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"></div>
+                        <div><label for="subject" class="block text-sm font-medium text-medium-gray">Subject</label><input type="text" id="subject" name="subject" required class="mt-1 block w-full px-4 py-3 bg-white border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"></div>
+                        <div><label for="message" class="block text-sm font-medium text-medium-gray">Message</label><textarea id="message" name="message" rows="4" required class="mt-1 block w-full px-4 py-3 bg-white border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"></textarea></div>
+                        <div><button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-base font-medium text-white bg-primary hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-300">Send Message</button></div>
+                    </form>
+                    <div id="form-status" class="mt-6 text-center"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark-blue text-white">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="md:col-span-1">
+                    <h3 class="text-xl font-bold mb-4">Intelitz</h3>
+                    <p class="text-gray-400">Engineering the future of software, one line of code at a time.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold tracking-wider uppercase mb-4">Links</h4>
+                    <a href="#about" class="block mb-2 text-gray-400 hover:text-white">About</a>
+                    <a href="#services" class="block mb-2 text-gray-400 hover:text-white">Services</a>
+                    <a href="#process" class="block mb-2 text-gray-400 hover:text-white">Process</a>
+                </div>
+                <div>
+                    <h4 class="font-semibold tracking-wider uppercase mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.47 9.763h2.94v-8.59H3.535v8.59z" clip-rule="evenodd" /></svg></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z" /></svg></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-gray-700 pt-8 text-center text-gray-400 text-sm">
+                &copy; 2024 Intelitz. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // Testimonial Slider
+        if (typeof Swiper !== 'undefined') {
+            const swiper = new Swiper('.testimonial-slider', {
+                loop: true,
+                slidesPerView: 1,
+                spaceBetween: 30,
+                navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+                autoplay: { delay: 5000, disableOnInteraction: false },
+            });
+        }
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const currentlyActive = document.querySelector('.faq-question.active');
+                if (currentlyActive && currentlyActive !== button) {
+                    currentlyActive.classList.remove('active');
+                }
+                button.classList.toggle('active');
+            });
+        });
+
+        // Contact Form
+        const contactForm = document.getElementById('contact-form');
+        const formStatus = document.getElementById('form-status');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+
+            if (!name || !email || !subject || !message) {
+                formStatus.innerHTML = `<p class="text-red-500">Please fill out all fields.</p>`;
+                return;
+            }
+
+            formStatus.innerHTML = `<p class="text-primary">Sending...</p>`;
+            setTimeout(() => {
+                formStatus.innerHTML = `<p class="text-green-600 font-semibold">Thank you! Your message has been sent.</p>`;
+                contactForm.reset();
+            }, 1500);
+        });
+        
+        // Scroll Animations
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            revealObserver.observe(el);
+        });
+        
+        const processStepObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.process-step').forEach(el => {
+            processStepObserver.observe(el);
+        });
+
+    </script>
+
+</body>
+</html>
