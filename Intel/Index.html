@@ -41,9 +41,6 @@
             background-image: radial-gradient(#dbeafe 2px, transparent 2px);
             background-size: 30px 30px;
         }
-        .swiper-button-next, .swiper-button-prev {
-            color: #4338CA;
-        }
         .faq-question { cursor: pointer; }
         .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
         .faq-question.active + .faq-answer { max-height: 200px; }
@@ -260,17 +257,55 @@
         </section>
 
         <!-- Testimonials Section -->
-        <section id="testimonials" class="py-24 bg-white">
+        <section id="testimonials" class="py-24 bg-light-gray">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-16 reveal"><h2 class="text-3xl font-bold text-dark-blue">Trusted by Industry Leaders</h2></div>
-                <div class="swiper-container testimonial-slider relative max-w-3xl mx-auto">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide text-center p-4"><img class="w-20 h-20 rounded-full mx-auto mb-5 bg-indigo-100" src="https://placehold.co/100x100/e0e7ff/4338ca?text=TC" alt="TechCorp Logo"><p class="text-lg text-medium-gray italic mb-6">"Intelitz transformed our vision into a reality. Their team is professional, skilled, and a pleasure to work with. Highly recommended!"</p><h4 class="font-bold text-dark-blue">Jane Doe</h4><p class="text-sm text-medium-gray">CEO, TechCorp</p></div>
-                        <div class="swiper-slide text-center p-4"><img class="w-20 h-20 rounded-full mx-auto mb-5 bg-indigo-100" src="https://placehold.co/100x100/e0e7ff/4338ca?text=IN" alt="Innovate LLC Logo"><p class="text-lg text-medium-gray italic mb-6">"The mobile app they developed exceeded our expectations. It's intuitive, fast, and has received amazing feedback from our users."</p><h4 class="font-bold text-dark-blue">John Smith</h4><p class="text-sm text-medium-gray">Founder, Innovate LLC</p></div>
-                        <div class="swiper-slide text-center p-4"><img class="w-20 h-20 rounded-full mx-auto mb-5 bg-indigo-100" src="https://placehold.co/100x100/e0e7ff/4338ca?text=SI" alt="Solutions Inc. Logo"><p class="text-lg text-medium-gray italic mb-6">"Their UI/UX design process was fantastic. They truly understood our brand and created a beautiful and functional product."</p><h4 class="font-bold text-dark-blue">Emily White</h4><p class="text-sm text-medium-gray">Marketing Director, Solutions Inc.</p></div>
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold text-dark-blue">Trusted by Industry Leaders</h2>
+                    <p class="text-medium-gray mt-3 max-w-2xl mx-auto">We're proud to have partnered with innovative companies to build solutions that drive real results.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg reveal">
+                        <svg class="w-10 h-10 text-indigo-200 mb-4" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z"/>
+                        </svg>
+                        <p class="text-medium-gray mb-6 flex-grow">"Working with Intelitz was a game-changer. Their team didn't just build an app; they delivered a solution that streamlined our entire workflow and boosted our team's productivity by 30%."</p>
+                        <div class="flex items-center">
+                            <img class="w-12 h-12 rounded-full bg-indigo-100" src="https://placehold.co/100x100/e0e7ff/4338ca?text=AF" alt="Aperture Finance Logo">
+                            <div class="ml-4">
+                                <h4 class="font-bold text-dark-blue">Sarah Chen</h4>
+                                <p class="text-sm text-medium-gray">COO, Aperture Finance</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
+                    <!-- Testimonial 2 -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg reveal" style="transition-delay: 150ms;">
+                        <svg class="w-10 h-10 text-indigo-200 mb-4" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z"/>
+                        </svg>
+                        <p class="text-medium-gray mb-6 flex-grow">"The UI/UX design process was incredibly collaborative. Intelitz took our abstract ideas and turned them into a stunning, intuitive platform that our users absolutely love. Our user engagement is up 40%."</p>
+                        <div class="flex items-center">
+                            <img class="w-12 h-12 rounded-full bg-indigo-100" src="https://placehold.co/100x100/e0e7ff/4338ca?text=QN" alt="Quantum Nexus Logo">
+                            <div class="ml-4">
+                                <h4 class="font-bold text-dark-blue">Michael B.</h4>
+                                <p class="text-sm text-medium-gray">Founder, Quantum Nexus</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 3 -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg reveal" style="transition-delay: 300ms;">
+                        <svg class="w-10 h-10 text-indigo-200 mb-4" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z"/>
+                        </svg>
+                        <p class="text-medium-gray mb-6 flex-grow">"From initial consultation to final deployment, the communication and professionalism were top-notch. They handled our complex migration to the cloud flawlessly and on schedule."</p>
+                        <div class="flex items-center">
+                            <img class="w-12 h-12 rounded-full bg-indigo-100" src="https://placehold.co/100x100/e0e7ff/4338ca?text=ZE" alt="Zenith Enterprises Logo">
+                            <div class="ml-4">
+                                <h4 class="font-bold text-dark-blue">David Lee</h4>
+                                <p class="text-sm text-medium-gray">CTO, Zenith Enterprises</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -347,16 +382,7 @@
             link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
         });
 
-        // Testimonial Slider
-        if (typeof Swiper !== 'undefined') {
-            const swiper = new Swiper('.testimonial-slider', {
-                loop: true,
-                slidesPerView: 1,
-                spaceBetween: 30,
-                navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-                autoplay: { delay: 5000, disableOnInteraction: false },
-            });
-        }
+        // Testimonial Slider - REMOVED as it's no longer used in the new grid layout
 
         // FAQ Accordion
         document.querySelectorAll('.faq-question').forEach(button => {
@@ -420,3 +446,4 @@
 
 </body>
 </html>
+
